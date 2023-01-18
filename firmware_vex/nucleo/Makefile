@@ -19,9 +19,9 @@ copy: compile
 	mpremote connect ${DEV} ls :
 
 copy_rshell: compile
-	rshell --port ${DEV} cp flash.mpy i2c.mpy gpio_config_builder.mpy nucleo_api.mpy gpio_config_def.mpy /flash
+	rshell --port ${DEV} cp flash.py i2c.py gpio_config_builder.py nucleo_api.py /flash
 	rshell --port ${DEV} cp config_io_o.hex /flash
-	rshell --port ${DEV} cp io_config.mpy /flash
+	rshell --port ${DEV} cp io_config.py /flash
 	rshell --port ${DEV} cp main.py /flash
 	rshell --port ${DEV} ls /flash
 
