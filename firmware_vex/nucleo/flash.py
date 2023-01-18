@@ -154,7 +154,7 @@ class SPI:
             self.write(wcmd)
             addr += 64
             while self.is_busy():
-                time.sleep(0.1)
+                time.sleep(0.5)
 
 
 def check():
@@ -360,7 +360,7 @@ def flash(file_path, debug=False):
                 wcmd.extend(buf)
                 slave.write(wcmd)
                 while (slave.is_busy()):
-                    time.sleep(0.1)
+                    time.sleep(0.5)
 
                 if debug:
                     print("addr {}: flash page write successful (1)".format(hex(addr)))
@@ -388,7 +388,7 @@ def flash(file_path, debug=False):
             wcmd.extend(buf)
             slave.write(wcmd)
             while (slave.is_busy()):
-                time.sleep(0.1)
+                time.sleep(0.5)
 
             if debug:
                 print("addr {}: flash page write successful (2)".format(hex(addr)))
@@ -444,6 +444,8 @@ def flash(file_path, debug=False):
                 read_cmd = bytearray((CARAVEL_PASSTHRU, CMD_READ_LO_SPEED,(addr >> 16) & 0xff, (addr >> 8) & 0xff, addr & 0xff))
                 # print(binascii.hexlify(read_cmd))
                 buf2 = slave.exchange(read_cmd, nbytes)
+                while (slave.is_busy()):
+                    time.sleep(0.5)
                 if buf == buf2:
                     if debug:
                         print("addr {}: read compare successful".format(hex(addr)))
