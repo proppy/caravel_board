@@ -140,6 +140,7 @@ def exec_data_flash(test, test_name, config_stream):
 
 
 def run_test(test, chain):
+    print(f"run_test {test}: {chain}")
     phase = 0
     io_pulse = 0
     if chain == "low":
@@ -150,12 +151,13 @@ def run_test(test, chain):
         end_pulses = 19
     for i in range(0,end_pulses):
         pulse_count = test.receive_packet()
+        print(f"pulse_count: {pulse_count}")
         if pulse_count == 2:
             if chain == "low":
                 channel = channel + 1
             else:
                 channel = channel - 1
-            #print(f"start sending pulses to gpio[{channel}]")
+            print(f"start sending pulses to gpio[{channel}]")
             timeout = time.time() + 10
             state = 0
             io_pulse = 0
@@ -256,12 +258,14 @@ def choose_test(
         exec_data_flash(test, test_name, config_stream)
         test_result, channel_failed = run_test(test, chain)
         if test_result:
-            print("**** IO Configuration Test for {} Chain PASSED!!".format(chain))
-            test_passed(test, gpio_l, gpio_h, chain)
+            print("**** IO Configuration Test for {} Chain PASSED!!: {}".format(chain, test_result))
+            test_passedtest, gpio_l, gpio_h, chain)
         else:
+            print("**** IO Configuration Test for {} Chain FAILED!!: {}".format(chain, channel_failed))
             gpio_l, gpio_h = change_config(
                 channel_failed, gpio_l, gpio_h, test.voltage, test
             )
+            print("**** Trying new config: low: {} high: {}".format(gpio_l.array, gpio_h.array))
         if gpio_h.get_gpio_failed() or gpio_l.get_gpio_failed():
             break
 
