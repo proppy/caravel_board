@@ -603,7 +603,7 @@ def flash_mem(inp_data, debug=False):
             wcmd.extend(buf)
             slave.write(wcmd)
             while (slave.is_busy()):
-                time.sleep(0.1)
+                time.sleep(0.5)
 
             if debug:
                 print("addr {}: flash page write successful (1)".format(hex(addr)))
@@ -634,7 +634,7 @@ def flash_mem(inp_data, debug=False):
         slave.write(wcmd)
         # input("DEBUG - pausing execution...")
         while (slave.is_busy()):
-            time.sleep(0.1)
+            time.sleep(0.5)
 
         if debug:
             print("addr {}: flash page write successful (2)".format(hex(addr)))
