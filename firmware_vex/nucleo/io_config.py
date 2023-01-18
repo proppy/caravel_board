@@ -131,7 +131,7 @@ def exec_data_flash(test, test_name, config_stream):
     print("\n*** flashing Caravel")
     test.apply_reset()
     test.powerup_sequence()
-    erase()
+    erase(debug=True)
     # test.flash(f"{test_name}.hex")
     flash(f"{test_name}.hex")
     data_flash(test_name, config_stream )
