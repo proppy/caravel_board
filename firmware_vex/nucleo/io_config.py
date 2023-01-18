@@ -115,7 +115,7 @@ def data_flash(test_name, hex_data, first_line=1):
         new_hex_file.write(f"{i}\n")
     new_hex_file.close()
 
-    flash(f"{test_name}-tmp.hex")
+    flash(f"{test_name}-tmp.hex", debug=True)
 
 
 def exec_flash(test, test_name):
@@ -133,7 +133,7 @@ def exec_data_flash(test, test_name, config_stream):
     test.powerup_sequence()
     erase(debug=True)
     # test.flash(f"{test_name}.hex")
-    flash(f"{test_name}.hex")
+    flash(f"{test_name}.hex", debug=True)
     data_flash(test_name, config_stream )
     test.powerup_sequence()
     test.release_reset()
