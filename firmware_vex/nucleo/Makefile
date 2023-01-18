@@ -1,6 +1,3 @@
-
-export PATH=$PATH:/bin:/usr/local/bin/:../../venv/bin:/usr/bin/:.
-
 #DEV=/dev/cu.usbmodem3103
 DEV=/dev/cu.usbmodem34203
 #DEV=/dev/cu.usbmodem34103
