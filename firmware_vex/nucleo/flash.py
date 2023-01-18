@@ -224,7 +224,7 @@ def erase(debug=False):
     # if int.from_bytes(mfg, 'big') != 0x0456:
     #     exit(2)
 
-    time.sleep(1.0)
+    time.sleep(5.0)
     led.toggle()
 
     if debug:
@@ -302,7 +302,7 @@ def flash(file_path, debug=False):
     # if int.from_bytes(mfg, 'big') != 0x0456:
     #     exit(2)
 
-    time.sleep(1.0)
+    time.sleep(5.0)
     led.toggle()
 
     if debug:
@@ -531,7 +531,7 @@ def flash_mem(inp_data, debug=False):
         #print("   project ID = {:08x}".format(int('{0:32b}'.format(int.from_bytes(data,'big'))[::-1], 2)))
         print("   project ID = {:08x}".format(int('{0:32b}'.format(int.from_bytes(data, 'big')), 2)))
 
-    time.sleep(1.0)
+    time.sleep(5.0)
     led.toggle()
 
     if debug:
